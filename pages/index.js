@@ -6,9 +6,9 @@ import { DrawerMenu, MobileMenu } from "../src/features/MainMenu";
 
 export default function Index() {
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
 
-  if(!matches){
+  if(matches){
     return (
       <Box>
         <MobileMenu />
