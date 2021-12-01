@@ -77,13 +77,10 @@ export default function AvatarMenu() {
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
           variant="dot"
         >
-          <Avatar
-            alt="Name"
-            // src="/static/images/avatar/1.jpg"
+          <Avatar sx={{alignItems: "center", justifyContent: "center", textAlign: 'center'}} 
+            alt="GT" src={`https://avatars.dicebear.com/api/initials/GT.svg`}
             onClick={handleToggleAvatarMenu}
-          >
-            NE
-          </Avatar>
+          />           
         </StyledBadge>
       </Toolbar>
 
