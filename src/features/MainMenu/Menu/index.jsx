@@ -68,7 +68,7 @@ export default function Menu() {
     setMenuData(data);
   }
 
-  const PopulateMenuItems = () => menuData.map( (item, index) => MenuItem(item) );
+  const PopulateMenuItems = () => menuData.map( item => MenuItem(item) );
 
   useEffect(() => {
     getMenuData();   
