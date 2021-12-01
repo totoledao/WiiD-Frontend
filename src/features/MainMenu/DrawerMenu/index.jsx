@@ -33,41 +33,44 @@ export default function DrawerMenu() {
 
   return (
 
-    <>
-    <CssBaseline />  
-  
-    <Drawer
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        '& .MuiDrawer-paper': {
-          width: drawerWidth,
-          boxSizing: 'border-box',
-        },
-      }}
-      variant="permanent"
-      anchor="left"
-    >
-      <Avatar />
-      <Menu />  
-    </Drawer>
+    <Box sx={{ position: "relative" }} >
 
-    <Box
-      sx={{
-        position: "absolute",
-        top: 0,
-        left: drawerWidth - 5,
-        width: 10,
-        height: "100vh",        
-        zIndex: 10000,
-        '&:hover': {
-          cursor: "w-resize",
-          backgroundColor: "rgba(0, 0, 0, 0.05)"
-        }
-      }}
-      onMouseDown={(e) => handleStartResizing(e)}
-    />
-    </>
+      <CssBaseline />  
+    
+      <Drawer
+        sx={{
+          position: 'relative',
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+          },
+        }}
+        variant="permanent"
+        anchor="left"
+      >
+        <Avatar />
+        <Menu />  
+      </Drawer>
+
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: drawerWidth - 5,
+          width: 10,
+          height: "100%",
+          zIndex: 10000,
+          '&:hover': {
+            cursor: "w-resize",
+            backgroundColor: "rgba(0, 0, 0, 0.05)"
+          }
+        }}
+        onMouseDown={(e) => handleStartResizing(e)}
+      />
+
+    </Box >
 
   )  
 }
