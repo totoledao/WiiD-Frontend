@@ -60,7 +60,7 @@ export default function DrawerMenu() {
           top: 0,
           left: drawerWidth - 5,
           width: 10,
-          height: "100%",
+          height: "100vh",
           zIndex: 10000,
           '&:hover': {
             cursor: "w-resize",
