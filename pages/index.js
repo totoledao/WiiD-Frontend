@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { DrawerMenu, MobileMenu } from "../src/features/MainMenu";
+import Mailbox from '../src/features/Mailbox';
 
 export default function Index() {
   const theme = useTheme();
@@ -12,13 +13,13 @@ export default function Index() {
     return (
       <Box>
         <MobileMenu />
-        <div>aaa</div>
+        <Mailbox />
       </Box>
     )
   } else return (
     <Box sx={{ display: "flex" }}>
       <DrawerMenu />
-      <div>aaa</div>
+      <Mailbox />
     </Box>
   )
 }
