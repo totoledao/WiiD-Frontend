@@ -199,10 +199,9 @@ function ErrorMessage() {
 
 export default function Emails( {emails, setEmails, selectedEmails, setSelectedEmails} ) {
   
-  const { selectedMenu } = useContext(AppContext);
+  const { selectedMenu, isLoadingEmails, setIsLoadingEmails } = useContext(AppContext);
 
   const [requestError, setRequestError] = useState(false);
-  const [firstRender, setFirstRender] = useState(true);
 
   const getData = async () => {
     if(selectedMenu === undefined) return;
@@ -215,8 +214,8 @@ export default function Emails( {emails, setEmails, selectedEmails, setSelectedE
       setRequestError(false);
     } else setRequestError(true);
 
-    setFirstRender(false);
     setSelectedEmails([]);
+    setIsLoadingEmails(false);
   }
 
   const PopulateEmailList = () => emails.map( (email, index) => Email(email, index, selectedEmails, setSelectedEmails) );
@@ -226,13 +225,11 @@ export default function Emails( {emails, setEmails, selectedEmails, setSelectedE
   },[selectedMenu])
 
   if(requestError) return <ErrorMessage />
+  if(isLoadingEmails) return <Loading />
 
   return (
     <>    
-      {emails.length < 1
-        ? firstRender ? <Loading /> : <EmptyEmailList />
-        : <PopulateEmailList />
-      }
+      {emails.length < 1 ? <EmptyEmailList /> : <PopulateEmailList />}
     </>
   )
 }

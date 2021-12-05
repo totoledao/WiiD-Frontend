@@ -18,7 +18,7 @@ import Loading from '../../../components/Loading';
 
 function MenuItem ( item ) {
   
-  const { selectedMenu, setSelectedMenu, setIsMobileMenuOpen } = useContext(AppContext);
+  const { selectedMenu, setSelectedMenu, setIsMobileMenuOpen, setIsLoadingEmails } = useContext(AppContext);
   
   const [open, setOpen] = useState(false);
   
@@ -64,7 +64,11 @@ function MenuItem ( item ) {
                   }
                 } else return {pl: 4}
               }}
-              onClick={() => { setSelectedMenu(subMenu.id); setIsMobileMenuOpen(false) }}
+              onClick={() => {
+                setSelectedMenu(subMenu.id);
+                setIsMobileMenuOpen(false);
+                setIsLoadingEmails(true);
+              }}
               >         
 
               <ListItemText primary={subMenu.name} />

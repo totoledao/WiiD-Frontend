@@ -18,6 +18,7 @@ export default function MyApp(props) {
   //Global States
   const [selectedMenu, setSelectedMenu] = React.useState();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isLoadingEmails, setIsLoadingEmails] = React.useState(true);
 
   return (
     <CacheProvider value={emotionCache}>
@@ -31,7 +32,9 @@ export default function MyApp(props) {
             selectedMenu,
             setSelectedMenu,
             isMobileMenuOpen,
-            setIsMobileMenuOpen
+            setIsMobileMenuOpen,
+            isLoadingEmails,
+            setIsLoadingEmails
           }
         }
       >
