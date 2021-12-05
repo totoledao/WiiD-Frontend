@@ -5,11 +5,11 @@ import {
   Drawer
 } from '@mui/material';
 
+import AppContext from "../../../AppContext";
 import Menu from "../Menu";
 import Avatar from '../Avatar';
 
 export default function DrawerMenu() {
-
   const [drawerWidth, setDrawerWidth] = useState(240);
   const minDrawerWidth = 52;
   const maxDrawerWidth = 500;
@@ -51,7 +51,7 @@ export default function DrawerMenu() {
         anchor="left"
       >
         <Avatar />
-        <Menu />  
+        <Menu />
       </Drawer>
 
       <Box

@@ -1,18 +1,20 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { 
   Box,
   Modal,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
+import AppContext from '../../../AppContext';
 import Avatar from "../Avatar";
 import Menu from "../Menu";
 
 export default function MobileMenu() {
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const { isMobileMenuOpen, setIsMobileMenuOpen } = useContext(AppContext);
+
+  const handleOpen = () => setIsMobileMenuOpen(true);
+  const handleClose = () => setIsMobileMenuOpen(false);
 
   return (
 
@@ -28,8 +30,9 @@ export default function MobileMenu() {
      <MenuIcon sx={{width: 50, height:30}} onClick={handleOpen}/>
 
      <Modal
-        open={open}
+        open={isMobileMenuOpen}
         onClose={handleClose}
+        keepMounted
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
