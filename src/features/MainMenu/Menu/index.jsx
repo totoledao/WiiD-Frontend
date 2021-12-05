@@ -86,7 +86,7 @@ export default function Menu() {
   const [menuData, setMenuData] = useState([]);  
   
   const getMenuData = async () => {
-    const res = await fetch("http://my-json-server.typicode.com/workinideas/vagafrontendteste/menus");
+    const res = await fetch("https://my-json-server.typicode.com/workinideas/vagafrontendteste/menus");
     const data = await res.json();
 
     setMenuData(data);
