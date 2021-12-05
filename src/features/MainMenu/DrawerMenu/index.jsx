@@ -5,7 +5,6 @@ import {
   Drawer
 } from '@mui/material';
 
-import AppContext from "../../../AppContext";
 import Menu from "../Menu";
 import Avatar from '../Avatar';
 
