@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useState } from 'react';
+import { Fragment, useCallback, useContext, useEffect, useState } from 'react';
 import { alpha } from '@mui/material';
 import {
   Box, 
@@ -34,7 +34,7 @@ function MenuItem ( item ) {
 
   useEffect(() => {
     openMenuOnMount();
-  },[]);
+  },[selectedMenu]);
   
   return ( 
     <Fragment key={item.id}>
@@ -97,10 +97,10 @@ export default function Menu() {
     setSelectedMenu(data[0].subMenus[0].id);
   };
 
-  const PopulateMenuItems = () => menuData.map( item => MenuItem(item) );
+  const PopulateMenuItems = useCallback( () => menuData.map( item => MenuItem(item) ) ,[menuData]);
 
   useEffect(() => {
-    getMenuData();    
+    getMenuData(); 
   },[]);
 
   return (
