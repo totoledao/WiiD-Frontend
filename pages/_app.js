@@ -1,10 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
-import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
 
 import AppContext from '../src/AppContext';
@@ -19,6 +18,40 @@ export default function MyApp(props) {
   const [selectedMenu, setSelectedMenu] = React.useState();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isLoadingEmails, setIsLoadingEmails] = React.useState(true);
+  const [mode, setMode] = React.useState('light');
+  const colorMode = React.useMemo(
+    () => ({
+      // The dark mode switch invokes this method
+      toggleColorMode: () => {
+        setMode(prev => prev === 'light' ? 'dark' : 'light');
+      },
+    }),
+  [],);
+
+  const secondaryColorChanger = () => {
+    if(mode === 'light')
+    { 
+      return '#ededed'
+    } else return '#424242';
+  }
+
+  //MUI Theme
+  const theme =  React.useMemo(() =>
+    createTheme({
+      palette: {
+        mode: mode,
+        primary: {
+          main: '#556cd6',
+        },
+        secondary: {          
+          main: secondaryColorChanger(),     
+        },
+        error: {
+          main: '#f44336',
+        },    
+      },
+    })
+  ,[mode]);
 
   return (
     <CacheProvider value={emotionCache}>
@@ -34,7 +67,8 @@ export default function MyApp(props) {
             isMobileMenuOpen,
             setIsMobileMenuOpen,
             isLoadingEmails,
-            setIsLoadingEmails
+            setIsLoadingEmails,
+            colorMode
           }
         }
       >

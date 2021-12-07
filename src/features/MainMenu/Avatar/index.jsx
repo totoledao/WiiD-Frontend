@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import {
   Grid,
   FormLabel,
@@ -17,6 +17,8 @@ import {
 import { styled } from '@mui/material/styles';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+
+import AppContext from '../../../AppContext';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -55,6 +57,8 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
 
 export default function AvatarMenu() {
 
+  const { colorMode } = useContext(AppContext);
+
   const [isAvatarMenuOpen, setIsAvatarMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [language, setLanguage] = useState("BR");
@@ -67,6 +71,7 @@ export default function AvatarMenu() {
 
   const handleToggleTheme = () => {    
     setIsDarkMode(prev => !prev);
+    colorMode.toggleColorMode();
   };
 
   return (
