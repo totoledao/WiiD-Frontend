@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import Router from 'next/router'
 import {
   Grid,
   FormLabel,
@@ -57,7 +58,7 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
 
 export default function AvatarMenu() {
 
-  const { colorMode } = useContext(AppContext);
+  const { colorMode, setIsAuth } = useContext(AppContext);
 
   const [isAvatarMenuOpen, setIsAvatarMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -69,9 +70,16 @@ export default function AvatarMenu() {
     setIsAvatarMenuOpen(prev => !prev);
   };
 
-  const handleToggleTheme = () => {    
+  const handleToggleTheme = (e) => {
+    handleToggleAvatarMenu(e);    
     setIsDarkMode(prev => !prev);
     colorMode.toggleColorMode();
+  };
+
+  const handleLogout = (e) => {
+    handleToggleAvatarMenu(e);
+    Router.push('/login');
+    setIsAuth(false);
   };
 
   return (
@@ -112,7 +120,7 @@ export default function AvatarMenu() {
                 <Grid item>
                   <Switch
                     checked={isDarkMode}
-                    onChange={(e) => {handleToggleTheme(); handleToggleAvatarMenu(e)}}
+                    onChange={handleToggleTheme}
                   />
                 </Grid>
 
@@ -159,7 +167,7 @@ export default function AvatarMenu() {
           </FormControl>
         </MenuItem>
 
-        <MenuItem onClick={handleToggleAvatarMenu}>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
 
       </Menu>
     

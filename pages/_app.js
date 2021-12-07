@@ -18,6 +18,8 @@ export default function MyApp(props) {
   const [selectedMenu, setSelectedMenu] = React.useState();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isLoadingEmails, setIsLoadingEmails] = React.useState(true);
+  const [isAuth, setIsAuth] = React.useState(false);
+  //Dark mode handlers
   const [mode, setMode] = React.useState('light');
   const colorMode = React.useMemo(
     () => ({
@@ -68,6 +70,8 @@ export default function MyApp(props) {
             setIsMobileMenuOpen,
             isLoadingEmails,
             setIsLoadingEmails,
+            isAuth,
+            setIsAuth,
             colorMode
           }
         }
