@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Router from 'next/router';
 import {
   Grid,
@@ -12,7 +12,14 @@ import {
 import Link from '../src/Link';
 import AppContext from '.././src/AppContext';
 
-export default function Login() {
+//Get cookie on server side
+export function getServerSideProps( {req, res} ) {
+  return {
+    props: { isAuthCookie: req.cookies.isAuth ?? ""}, // will be passed to the page component as props
+  }
+};
+
+export default function Login(props) {
   const { isAuth, setIsAuth } = useContext(AppContext);
 
   const [username, setUsername] = useState('');
@@ -20,11 +27,12 @@ export default function Login() {
   const [usernameErr, setUsernameErr] = useState(false);
   const [passwordErr, setPasswordErr] = useState(false);
 
-  // const handleSubmit = () => {handleAuthentication(username, (arg) => setIsAuth(arg), navigateToHome ); }
   const handleAuth = () => {
     if(username === 'admin' && password === 'admin') {
+      //Create a cookie to save session
+      document.cookie = "isAuth=true; path=/";
       setIsAuth(true);
-      Router.push('/')
+      Router.push('/');
     }
     if(username != 'admin') {
       setUsernameErr(true);
@@ -39,6 +47,22 @@ export default function Login() {
       }, 1500);
     }
   };
+
+  useEffect(() => {
+    if(props.isAuthCookie){
+      setIsAuth(true);
+    }
+  },[])
+
+  useEffect(() => {
+    if(isAuth){
+      Router.push('/');
+    }
+  },[isAuth])
+
+  if(isAuth){
+    return <div></div> 
+  }
 
   return (
     <Grid

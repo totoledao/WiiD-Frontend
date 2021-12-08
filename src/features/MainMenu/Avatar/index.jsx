@@ -77,6 +77,7 @@ export default function AvatarMenu() {
   };
 
   const handleLogout = (e) => {
+    document.cookie = "isAuth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     handleToggleAvatarMenu(e);
     Router.push('/login');
     setIsAuth(false);
