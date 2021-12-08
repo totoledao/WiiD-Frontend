@@ -6,7 +6,7 @@
 <p align="center">  
 
   <p align="center">
-    Teste prático para a vaga de Frontend da <a href="https://wiid-frontend.vercel.app/">WiiD</a>.
+    Teste prático para a vaga de Frontend da <a href="https://wi-id.com/">WiiD</a>.
     <br>
     <a href="https://wiid-frontend.vercel.app/"><strong>Veja o projeto em ação!</strong></a>    
   </p>
