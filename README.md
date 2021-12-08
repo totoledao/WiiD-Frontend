@@ -110,7 +110,7 @@ Faça login utilizando **admin** como *nome de usuário* e *senha*.
     alt="Tema e Idioma" width="600">
   </a>
 
-  Ao clicar no avatar é possível alternar o tema entre o modo escuro e calor, escolher o idioma da aplicação e fazer o logout. A funcionalidade de login é salva em um cookie que é deletado ao fazer o logout. As preferências de tema e idioma não são salvas.
+  Ao clicar no avatar é possível alternar o tema entre o modo escuro e claro, escolher o idioma da aplicação e fazer o logout. A funcionalidade de login é salva em um cookie que é deletado ao fazer o logout. As preferências de tema e idioma não são salvas.
 <br>
 <br>
 
