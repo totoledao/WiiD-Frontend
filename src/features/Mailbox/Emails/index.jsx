@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 
 import AppContext from '../../../AppContext';
+import language from '../../../language';
 import Loading from '../../../components/Loading';
 
 function Email(email, index, selectedEmails, setSelectedEmails) {
@@ -154,6 +155,7 @@ function Email(email, index, selectedEmails, setSelectedEmails) {
 }
 
 function EmptyEmailList() {
+  const { languageSelected } = useContext(AppContext);
 
   return (
     <Box
@@ -166,10 +168,10 @@ function EmptyEmailList() {
       }}
     >
       <Typography variant="h4" color="text.secondary" component="div" noWrap>
-        Você não tem emails!
+        {language[languageSelected].noMessages.empty}
       </Typography>
       <Typography variant="subtitle1" color="text.secondary" component="div" noWrap >
-        Selecione outro item do menu
+      {language[languageSelected].noMessages.chooseAnotherItem}
       </Typography>
     </Box>
   )

@@ -16,7 +16,7 @@ const language = {
       logout: "Sair"
     },
     noMessages: {
-      noMessages: "Sua caixa de mensagens está vazia!",
+      empty: "Sua caixa de mensagens está vazia!",
       chooseAnotherItem: "selecione outro item do menu para ver suas mensagens"
     },
     search: "Busca"
@@ -38,7 +38,7 @@ const language = {
       logout: "Logout"
     },
     noMessages: {
-      noMessages: "Your message list is empty!",
+      empty: "Your message list is empty!",
       chooseAnotherItem: "select another menu item to view your messages"
     },
     search: "Search"
@@ -60,7 +60,7 @@ const language = {
       logout: "Salir"
     },
     noMessages: {
-      noMessages: "¡Tu lista de mensajes está vacía!",
+      empty: "¡Tu lista de mensajes está vacía!",
       chooseAnotherItem: "seleccione otro elemento del menú para ver sus mensajes"
     },
     search: "Buscar"
