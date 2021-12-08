@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { styled } from '@mui/material/styles';
 import {
   Box,
@@ -7,6 +8,9 @@ import {
   Stack
 } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
+
+import AppContext from '../../../AppContext';
+import language from '../../../language';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -50,6 +54,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function TopBar( {emails, setEmails, selectedEmails, setSelectedEmails} ){
 
+  const { languageSelected } = useContext(AppContext);
+
   const handleArquivar = () => {
     let filteredEmails = [...emails];
     let filter = [...selectedEmails];
@@ -85,7 +91,7 @@ export default function TopBar( {emails, setEmails, selectedEmails, setSelectedE
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
-          placeholder="Busca"
+          placeholder={language[languageSelected].search}
           inputProps={{ 'aria-label': 'search' }}
         />
       </Search>
@@ -111,15 +117,15 @@ export default function TopBar( {emails, setEmails, selectedEmails, setSelectedE
           <Button variant="outlined"
             onClick={handleArquivar}
           >
-            Arquivar
+            {language[languageSelected].buttons.archive}
           </Button>
 
           <Button variant="outlined" disabled>
-            Atribuir
+            {language[languageSelected].buttons.assign}
           </Button>
 
           <Button variant="outlined" disabled>
-            Agendar
+            {language[languageSelected].buttons.schedule}
           </Button>         
         </Stack>
 

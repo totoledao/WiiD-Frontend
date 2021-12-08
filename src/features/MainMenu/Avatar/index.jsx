@@ -13,6 +13,7 @@ import {
   Menu,
   MenuItem,
   InputLabel,
+  Typography,
   Select
 } from '@mui/material'
 import { styled } from '@mui/material/styles';
@@ -20,6 +21,7 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 
 import AppContext from '../../../AppContext';
+import language from '../../../language';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -58,11 +60,10 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
 
 export default function AvatarMenu() {
 
-  const { colorMode, setIsAuth } = useContext(AppContext);
+  const { colorMode, setIsAuth, languageSelected, setLanguageSelected } = useContext(AppContext);
 
   const [isAvatarMenuOpen, setIsAvatarMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [language, setLanguage] = useState("BR");
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleToggleAvatarMenu = (e) => {
@@ -74,6 +75,10 @@ export default function AvatarMenu() {
     handleToggleAvatarMenu(e);    
     setIsDarkMode(prev => !prev);
     colorMode.toggleColorMode();
+  };
+  
+  const handleChangeLanguage = (e) => {
+    setLanguageSelected(e.target.value);
   };
 
   const handleLogout = (e) => {
@@ -110,7 +115,7 @@ export default function AvatarMenu() {
 
         <MenuItem>
           <FormControl component="fieldset">
-            <FormLabel component="legend">Tema</FormLabel>
+            <FormLabel component="legend">{language[languageSelected].menus.theme}</FormLabel>
             <FormGroup aria-label="position" row>              
               <Grid component="label" container alignItems="center" spacing={0}>
 
@@ -135,40 +140,73 @@ export default function AvatarMenu() {
         </MenuItem>
 
         <MenuItem> 
-          <FormControl sx={{ minWidth: 105 }} component="fieldset">
-            <FormLabel component="legend">Idioma</FormLabel>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">{language[languageSelected].menus.language}</FormLabel>
             <Select
-              value={language}
-              onChange={e => setLanguage(e.target.value)}
+              value={languageSelected}
+              onChange={e => handleChangeLanguage(e)}
               displayEmpty
               inputProps={{ 'aria-label': 'Without label' }}
+              sx={{               
+                pt: 1,
+              }}
             >              
-              <MenuItem onClick={handleToggleAvatarMenu} value={"BR"}>
+              <MenuItem 
+                sx={{
+                  display:"flex",
+                  "&::after": {
+                    paddingLeft: "5px",
+                    content: '"pt"'
+                  }
+                }}
+                onClick={handleToggleAvatarMenu}
+                value={"br"}
+              >
                 <img
-                  width="30px"
+                  width="40px"
                   alt="BR"
                   src="http://purecatamphetamine.github.io/country-flag-icons/3x2/BR.svg"
                 />                
               </MenuItem>
-              <MenuItem onClick={handleToggleAvatarMenu} value={"US"}>
-                <img
-                  width="30px"
+              <MenuItem
+                sx={{
+                  display:"flex",
+                  "&::after": {
+                    paddingLeft: "5px",
+                    content: '"en"'
+                  }
+                }}
+                 onClick={handleToggleAvatarMenu}
+                 value={"en"}
+              >
+                <img                  
+                  width="40px"
                   alt="US"
                   src="http://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg"
-                />                
+                />                             
               </MenuItem>
-              <MenuItem onClick={handleToggleAvatarMenu} value={"ES"}>
+              <MenuItem
+                sx={{
+                  display:"flex",
+                  "&::after": {
+                    paddingLeft: "5px",
+                    content: '"es"'
+                  }
+                }}
+                onClick={handleToggleAvatarMenu}
+                value={"es"}
+              >
                 <img
-                  width="30px"
+                  width="40px"                  
                   alt="SP"
                   src="http://purecatamphetamine.github.io/country-flag-icons/3x2/ES.svg"
-                />                
+                />       
               </MenuItem>
             </Select>            
           </FormControl>
         </MenuItem>
 
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>{language[languageSelected].menus.logout}</MenuItem>
 
       </Menu>
     

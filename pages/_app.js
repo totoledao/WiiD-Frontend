@@ -14,10 +14,14 @@ const clientSideEmotionCache = createEmotionCache();
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
-  //Global States
+  //***Global States***
+  //Handle selection of email list to be displayed
   const [selectedMenu, setSelectedMenu] = React.useState();
+  //Handle closing mobile menu on item click
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  //Handle displaying loading progress circle
   const [isLoadingEmails, setIsLoadingEmails] = React.useState(true);
+  //True when user is logged
   const [isAuth, setIsAuth] = React.useState(false);
   //Dark mode handlers
   const [mode, setMode] = React.useState('light');
@@ -29,6 +33,8 @@ export default function MyApp(props) {
       },
     }),
   [],);
+  //Language selector
+  const [languageSelected, setLanguageSelected] = React.useState('br');
 
   const secondaryColorChanger = () => {
     if(mode === 'light')
@@ -72,7 +78,9 @@ export default function MyApp(props) {
             setIsLoadingEmails,
             isAuth,
             setIsAuth,
-            colorMode
+            colorMode,
+            languageSelected,
+            setLanguageSelected
           }
         }
       >
