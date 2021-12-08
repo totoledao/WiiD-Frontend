@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import Router from 'next/router'
 import {
   Grid,
+  Box,
   FormLabel,
   FormControl,
   FormGroup,
@@ -58,6 +59,42 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
   border: `2px solid ${theme.palette.background.paper}`,
 }));
 
+const AvatarGreeting = ( {message} ) => {
+  
+  //Choose the appropriate greeting from language.js
+  const selectGreeting = () => {
+    const currentTime = new Date().getHours();
+    switch(true) {
+      case currentTime >= 3 && currentTime < 13  :
+        return message.morning;
+        break;
+      case currentTime >= 13 && currentTime < 17 :
+        return message.noon;
+        break;
+      case currentTime >= 17 && currentTime < 3  :
+        return message.evening;
+        break;
+      default:
+        return message.noon;
+    }
+  }
+
+  return (
+    <Box sx={{
+      display: "flex",
+      flexDirection: "column",         
+      pl: 1      
+      }}>
+      <Typography sx={{fontSize: "0.825rem", marginBottom: "-10px"}}variant="subtitle2" color="text.secondary" component="div" noWrap >
+        {selectGreeting()}
+      </Typography>
+      <Typography sx={{fontSize: "1.2rem", marginBottom: "-10px"}} variant="subtitle1" color="text.primary" component="div" noWrap >
+        Guilherme Toledo
+      </Typography>
+    </Box>
+  )
+}
+
 export default function AvatarMenu() {
 
   const { colorMode, setIsAuth, languageSelected, setLanguageSelected } = useContext(AppContext);
@@ -101,6 +138,7 @@ export default function AvatarMenu() {
             onClick={handleToggleAvatarMenu}
           />           
         </StyledBadge>
+        <AvatarGreeting message={language[languageSelected].greetings} />
       </Toolbar>
 
       <Menu
