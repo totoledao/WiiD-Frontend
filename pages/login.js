@@ -104,12 +104,7 @@ export default function Login(props) {
       <Button variant="contained"                    
         onClick={handleAuth}
       >Entrar</Button>
-    </Grid>          
-
-    <Grid item>
-      {/* <Link to="/signup" > Ainda não tem uma conta? Cadastre-se! </Link> */}
     </Grid>
-      
     
     </Grid>
   )
