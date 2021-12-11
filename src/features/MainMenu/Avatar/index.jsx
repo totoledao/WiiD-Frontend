@@ -71,7 +71,7 @@ const AvatarGreeting = ( {message} ) => {
       case currentTime >= 13 && currentTime < 17 :
         return message.noon;
         break;
-      case currentTime >= 17 && currentTime < 3  :
+      case currentTime >= 17 || currentTime >= 0 && currentTime < 3 :
         return message.evening;
         break;
       default:
