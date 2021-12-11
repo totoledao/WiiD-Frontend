@@ -167,10 +167,10 @@ function EmptyEmailList() {
         height: 1
       }}
     >
-      <Typography variant="h4" color="text.secondary" component="div" noWrap>
+      <Typography variant="h4" color="text.secondary" component="div" >
         {language[languageSelected].noMessages.empty}
       </Typography>
-      <Typography variant="subtitle1" color="text.secondary" component="div" noWrap >
+      <Typography variant="subtitle1" color="text.secondary" component="div" >
       {language[languageSelected].noMessages.chooseAnotherItem}
       </Typography>
     </Box>
